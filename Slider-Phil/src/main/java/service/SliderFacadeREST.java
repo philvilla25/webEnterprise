@@ -7,6 +7,7 @@ package service;
 import cst8218.vill0419.slider.phil.entity.Slider;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -15,7 +16,11 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -25,16 +30,25 @@ import java.util.List;
 @Stateless
 @Path("cst8218.vill0419.slider.phil.entity.slider")
 public class SliderFacadeREST extends AbstractFacade<Slider> {
-
+    @PersistenceContext(unitName = "my_persistence_slider")
+    private EntityManager em;
+    
+    @Override
+    protected EntityManager getEntityManager() {
+    return em;
+    }
+    
     public SliderFacadeREST() {
         super(Slider.class);
     }
 
-    @POST
-    @Override
+   @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Slider entity) {
+    public Response createPost(Slider entity, @Context UriInfo uriInfo) {
         super.create(entity);
+        
+        URI location = URI.create(uriInfo.getRequestUri().getPath() + "/" + entity.getId());
+        return Response.status(Response.Status.CREATED).location(location).entity(entity).build();
     }
 
     @PUT
@@ -54,7 +68,7 @@ public class SliderFacadeREST extends AbstractFacade<Slider> {
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Slider find(@PathParam("id") Long id) {
-        return super.find(id);
+        return super.find(id);    
     }
 
     @GET
@@ -76,11 +90,6 @@ public class SliderFacadeREST extends AbstractFacade<Slider> {
     @Produces(MediaType.TEXT_PLAIN)
     public String countREST() {
         return String.valueOf(super.count());
-    }
+    } 
 
-    @Override
-    protected EntityManager getEntityManager() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

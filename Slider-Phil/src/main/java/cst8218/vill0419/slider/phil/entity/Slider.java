@@ -17,57 +17,15 @@ import java.io.Serializable;
 @Entity
 public class Slider implements Serializable {
 
-    /**
-     * @return the currentTravel
-     */
-    public Integer getCurrentTravel() {
-        return currentTravel;
-    }
-
-    /**
-     * @param currentTravel the currentTravel to set
-     */
-    public void setCurrentTravel(Integer currentTravel) {
-        this.currentTravel = currentTravel;
-    }
-
-    /**
-     * @return the movementDirection
-     */
-    public Integer getMovementDirection() {
-        return movementDirection;
-    }
-
-    /**
-     * @param movementDirection the movementDirection to set
-     */
-    public void setMovementDirection(Integer movementDirection) {
-        this.movementDirection = movementDirection;
-    }
-
-    /**
-     * @return the dirChangeCount
-     */
-    public Integer getDirChangeCount() {
-        return dirChangeCount;
-    }
-
-    /**
-     * @param dirChangeCount the dirChangeCount to set
-     */
-    public void setDirChangeCount(Integer dirChangeCount) {
-        this.dirChangeCount = dirChangeCount;
-    }
-
   
     public static final int INITIAL_SIZE = 20;
     public static final int TRAVEL_SPEED = 2; // 2 pixels per timeStep
     public static final int MAX_DIR_CHANGES = 5;
     public static final int DECAY_RATE = 1;
-    public static final int X_LIMIT = 800;
+    public static final int X_LIMIT = 600;
     public static final int Y_LIMIT = 600;
     public static final int SIZE_LIMIT = 50;
-    public static final int MAX_TRAVEL_LIMIT = 100;
+    public static final int MAX_TRAVEL_LIMIT = 500;
     private static final long serialVersionUID = 1L;
     
     
@@ -183,14 +141,14 @@ public class Slider implements Serializable {
      * @param maxTravel the maxTravel to set
      */
     public void setMaxTravel(Integer maxTravel) {
-        this.maxTravel = maxTravel;
+        this.maxTravel = MAX_TRAVEL_LIMIT;
     }
-   
     /** 
      * Updates the properties to simulate the passing of one unit of time.
      */
       public void timeStep() {
         currentTravel += movementDirection;
+        
         if (currentTravel >= maxTravel || currentTravel <= -maxTravel) {
             movementDirection = -movementDirection;
             dirChangeCount++;
@@ -204,5 +162,49 @@ public class Slider implements Serializable {
         }
     }
 
+    
+    /**
+     * @return the currentTravel
+     */
+    public Integer getCurrentTravel() {
+        return currentTravel;
+    }
+
+    /**
+     * @param currentTravel the currentTravel to set
+     */
+    public void setCurrentTravel(Integer currentTravel) {
+        this.currentTravel = currentTravel;
+    }
+
+    /**
+     * @return the movementDirection
+     */
+    public Integer getMovementDirection() {
+        return movementDirection;
+    }
+
+    /**
+     * @param movementDirection the movementDirection to set
+     */
+    public void setMovementDirection(Integer movementDirection) {
+        this.movementDirection = movementDirection;
+    }
+
+    /**
+     * @return the dirChangeCount
+     */
+    public Integer getDirChangeCount() {
+        return dirChangeCount;
+    }
+
+    /**
+     * @param dirChangeCount the dirChangeCount to set
+     */
+    public void setDirChangeCount(Integer dirChangeCount) {
+        this.dirChangeCount = dirChangeCount;
+    }
+
+   
     
 }
