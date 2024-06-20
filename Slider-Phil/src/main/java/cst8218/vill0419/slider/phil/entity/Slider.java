@@ -88,6 +88,7 @@ public class Slider implements Serializable {
         return "cst8218.vill0419.slider.phil.entity.Slider[ id=" + getId() + " ]";
     }
     
+  
       /**
      * @return the x
      */
