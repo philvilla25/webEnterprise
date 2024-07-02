@@ -18,17 +18,13 @@
                     <h:outputLabel value="#{bundle.CreateSliderLabel_currentTravel}" for="currentTravel" />
                     <h:inputText id="currentTravel" value="#{sliderController.selected.currentTravel}" title="#{bundle.CreateSliderTitle_currentTravel}" />
                     <h:outputLabel value="#{bundle.CreateSliderLabel_movementDirection}" for="movementDirection" />
-                    <h:inputText id="movementDirection" value="#{sliderController.selected.movementDirection}" title="#{bundle.CreateSliderTitle_movementDirection}" />
-                    <h:outputLabel value="#{bundle.CreateSliderLabel_dirChangeCount}" for="dirChangeCount" />
-                    <h:inputText id="dirChangeCount" value="#{sliderController.selected.dirChangeCount}" title="#{bundle.CreateSliderTitle_dirChangeCount}" />
+                    <h:inputText id="movementDirection" value="#{sliderController.selected.movementDirection}" title="#{bundle.CreateSliderTitle_movementDirection}" />                 
                     <h:outputLabel value="#{bundle.CreateSliderLabel_x}" for="x" />
                     <h:inputText id="x" value="#{sliderController.selected.x}" title="#{bundle.CreateSliderTitle_x}" />
                     <h:outputLabel value="#{bundle.CreateSliderLabel_y}" for="y" />
                     <h:inputText id="y" value="#{sliderController.selected.y}" title="#{bundle.CreateSliderTitle_y}" />
                     <h:outputLabel value="#{bundle.CreateSliderLabel_size}" for="size" />
-                    <h:inputText id="size" value="#{sliderController.selected.size}" title="#{bundle.CreateSliderTitle_size}" />
-                    <h:outputLabel value="#{bundle.CreateSliderLabel_maxTravel}" for="maxTravel" />
-                    <h:inputText id="maxTravel" value="#{sliderController.selected.maxTravel}" title="#{bundle.CreateSliderTitle_maxTravel}" />
+                    <h:inputText id="size" value="#{sliderController.selected.size}" title="#{bundle.CreateSliderTitle_size}" />                   
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{sliderController.create}" value="#{bundle.CreateSliderSaveLink}" />

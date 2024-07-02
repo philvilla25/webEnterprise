@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB40/StatelessEjbClass.java to edit this template
- */
+
 package cst8218.vill0419.slider.ejb;
 
 import cst8218.vill0419.slider.phil.entity.Slider;
@@ -10,9 +7,12 @@ import jakarta.ejb.LocalBean;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-/**
- *
- * @author Phil
+/*
+ * Description: part of the EJB layer where the EntityManager is instantiated to handle communitcation with database persistence
+ * Student Name: Philogene Villanueva
+ * Due Date: 2024-06-20
+ * Program/Course/Section:  24S_CST8218 
+ * 
  */
 @Stateless
 public class sliderFacade extends AbstractFacade<Slider>{
@@ -27,6 +27,5 @@ public class sliderFacade extends AbstractFacade<Slider>{
     protected EntityManager getEntityManager() {
         return em;
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
 }

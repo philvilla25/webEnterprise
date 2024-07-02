@@ -14,42 +14,58 @@ import java.util.List;
 
 /**
  *
- * @author Phil
+ * @author Philogene Villanueva
  */
 @Startup
 @Singleton
 @LocalBean
 public class SliderGame {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    @EJB private sliderFacade sliderFacade;
+   
+    @EJB
+    private sliderFacade sliderFacade;
     private static final int CHANGE_RATE = 60;
-    public SliderGame(){};   
-    
-@PostConstruct
-public void go() {
-    new Thread(new Runnable() {
-        public void run() {
-            // the game runs indefinitely
-            while (true) {
-                //update all the sliders and save changes to the database
-                List<Slider> sliders = sliderFacade.findAll();
-                for (Slider slider : sliders) {
-                    slider.timeStep();
-                    sliderFacade.edit(slider);
-                }
-                //sleep while waiting to process the next frame of the animation
-                try {
-                    // wake up roughly CHANGE_RATE times per second
-                    Thread.sleep((long)(1.0/CHANGE_RATE*1000));                               
-                } catch (InterruptedException exception) {
-                    exception.printStackTrace();
+
+    public SliderGame() {
+    }
+
+    /**
+     * Initializes the game loop that updates all sliders at a fixed rate. This
+     * method is annotated with @PostConstruct to indicate that it should be
+     * called once all dependency injections have been completed.
+     * Student Name: Philogene Villanueva
+     * Due Date: 2024-06-20
+     * Program/Course/Section:  24S_CST8218 
+     */
+    @PostConstruct
+    public void go() {
+        // Start a new thread to run the game loop
+        new Thread(new Runnable() {
+            public void run() {
+                // The game loop runs indefinitely
+                while (true) {
+                    // Retrieve all sliders from the database
+                    List<Slider> sliders = sliderFacade.findAll();
+
+                    // Iterate over each slider
+                    for (Slider slider : sliders) {
+                        // Update the slider's state
+                        slider.timeStep();
+
+                        // Save the changes to the database
+                        sliderFacade.edit(slider);
+                    }
+
+                    // Sleep to wait for the next frame of the animation
+                    try {
+                        // Wake up roughly CHANGE_RATE times per second
+                        Thread.sleep((long) (1.0 / CHANGE_RATE * 1000));
+                    } catch (InterruptedException exception) {
+                        // Print the stack trace if an interruption occurs
+                        exception.printStackTrace();
+                    }
                 }
             }
-        }
-    }).start();
-}
-
+        }).start(); // Start the thread
+    }
 
 }

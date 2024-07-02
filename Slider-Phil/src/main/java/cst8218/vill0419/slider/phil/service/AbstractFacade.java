@@ -2,14 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package service;
+package cst8218.vill0419.slider.phil.service;
 
 import jakarta.persistence.EntityManager;
 import java.util.List;
 
-/**
- *
- * @author Phil
+/*
+ * Description: Mother class of Object slider with implementations
+ * Student Name: Philogene Villanueva
+ * Due Date: 2024-06-20
+ * Program/Course/Section:  24S_CST8218 
+ * 
  */
 public abstract class AbstractFacade<T> {
 

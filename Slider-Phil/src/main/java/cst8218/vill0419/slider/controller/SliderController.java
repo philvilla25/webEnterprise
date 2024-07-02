@@ -1,9 +1,7 @@
 package cst8218.vill0419.slider.controller;
-
 import cst8218.vill0419.slider.phil.entity.Slider;
 import cst8218.vill0419.slider.controller.util.JsfUtil;
 import cst8218.vill0419.slider.controller.util.PaginationHelper;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import jakarta.annotation.Resource;
@@ -20,6 +18,14 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.UserTransaction;
 
+
+/*
+ * Description: Handles events and display presentation layer at client side
+ * Student Name: Philogene Villanueva
+ * Due Date: 2024-06-20
+ * Program/Course/Section:  24S_CST8218 
+ * 
+ */
 @Named("sliderController")
 @SessionScoped
 public class SliderController implements Serializable {

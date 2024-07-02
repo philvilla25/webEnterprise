@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.Application;
 
 /**
  *
- * @author Phil
+ * @author Philogene Villanueva
  */
 @ApplicationPath("resources")
 public class JakartaRestConfiguration extends Application{
