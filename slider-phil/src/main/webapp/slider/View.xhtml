@@ -15,8 +15,22 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSliderLabel_currentTravel}"/>
+                    <h:outputText value="#{sliderController.selected.currentTravel}" title="#{bundle.ViewSliderTitle_currentTravel}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_movementDirection}"/>
+                    <h:outputText value="#{sliderController.selected.movementDirection}" title="#{bundle.ViewSliderTitle_movementDirection}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_dirChangeCount}"/>
+                    <h:outputText value="#{sliderController.selected.dirChangeCount}" title="#{bundle.ViewSliderTitle_dirChangeCount}"/>
                     <h:outputText value="#{bundle.ViewSliderLabel_id}"/>
                     <h:outputText value="#{sliderController.selected.id}" title="#{bundle.ViewSliderTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_x}"/>
+                    <h:outputText value="#{sliderController.selected.x}" title="#{bundle.ViewSliderTitle_x}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_y}"/>
+                    <h:outputText value="#{sliderController.selected.y}" title="#{bundle.ViewSliderTitle_y}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_size}"/>
+                    <h:outputText value="#{sliderController.selected.size}" title="#{bundle.ViewSliderTitle_size}"/>
+                    <h:outputText value="#{bundle.ViewSliderLabel_maxTravel}"/>
+                    <h:outputText value="#{sliderController.selected.maxTravel}" title="#{bundle.ViewSliderTitle_maxTravel}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{sliderController.destroyAndView}" value="#{bundle.ViewSliderDestroyLink}"/>

@@ -22,9 +22,51 @@
                     <h:dataTable value="#{sliderController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_currentTravel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.currentTravel}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_movementDirection}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.movementDirection}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_dirChangeCount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dirChangeCount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSliderTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_x}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.x}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_y}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.y}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_size}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.size}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSliderTitle_maxTravel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.maxTravel}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
