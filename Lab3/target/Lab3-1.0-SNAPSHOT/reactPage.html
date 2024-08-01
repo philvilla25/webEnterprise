@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" /> <title>Hello World</title>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+"imports": {
+"react": "https://esm.sh/react?dev",
+"react-dom/client": "https://esm.sh/react-dom/client?dev"
+}
+}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" >
+import React, { useEffect, useState, StrictMode, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
+
+function MyApp() {
+const [selected, setSelected] = useState({});
+const [contacts, setContacts] = useState(
+[{"firstname":"Todd","homephone":"123"},
+{"firstname":"Ben","homephone":"456"}]);
+
+
+useEffect(
+() => {
+async function getContacts() {
+let result = await fetch(
+"http://localhost:8080/Lab3/resources/cst8218.vill0419.lab3.contact",
+{
+method: 'GET',
+headers: {'Accept': 'application/json'}
+});
+const json = await result.json();
+setContacts(json);
+};
+//getContacts();
+const timeInterval = setInterval(getContacts,300);
+//return a function to clean up if the user leaves the page
+return () => clearInterval(timeInterval) ;
+},[]);
+
+const canvasRef = useRef(null);
+
+    useEffect(() => {
+            const ctx = canvasRef.current.getContext("2d");
+                ctx.clearRect(0, 0, canvasRef.current.width,canvasRef.current.height);
+                ctx.fillStyle = "#0000FF";
+                contacts.forEach(item => {
+                    ctx.fillRect(item.mobilePhone, item.mobilePhone, 100, 100)
+                });
+    })
+const handleClick = (event,field,index)=> {
+setSelected({"index":index, "field":field, "value":event.target.value});
+}
+
+function handleChange(event,field,index) {
+        setSelected({"index":index, "field":selected.field, "value":event.target.value});
+        }
+        
+const handleSubmit = (event) => {
+var newItem;
+            contacts.map((item, key) => {
+                if (key === selected.index) { //this is the one the user is changing
+                newItem = Object.assign({}, item, {[selected.field]: selected.value}); //make a copy of the item to change
+                setSelected({}); // reset selected until next click/change
+                fetch("http://localhost:8080/Lab3/resources/cst8218.vill0419.lab3.contact/"+item.id, {
+                    method: 'PUT',
+                    body: JSON.stringify(newItem),
+                    headers: {'Content-type': 'application/json'}
+                })
+                .then(res => res.text());
+        }
+});
+event.preventDefault();
+}
+
+
+return <div>
+   <form onSubmit={handleSubmit}>
+    <table>
+        <tr><th>firstname</th><th>lastName</th><th>homephone</th><th>email</th><th>mobilePhone</th>{selected.field != null ? <th> new{selected.field}</th>:""} 
+        </tr>
+            {contacts.map((item,key)=>{
+        return (
+        <tr>
+            <td> <input type="text" name={item.id} value={item.firstName} onClick={(e) => handleClick(e,"firstName",key)} 
+                    onChange={(e)=>handleChange(e,"firstName",key)} /> </td>
+            <td> <input type="text" name={item.id} value={item.lastName} onClick={(e) => handleClick(e,"lastName",key)}
+                    onChange={(e)=>handleChange(e,"lastName",key)} /> </td>
+            <td> <input type="text" name={item.id} value={item.homePhone} onClick={(e) => handleClick(e,"homePhone",key)}
+                    onChange={(e)=>handleChange(e,"homePhone",key)} /> </td>
+            <td> <input type="text" name={item.id} value={item.email} onClick={(e) => handleClick(e,"email",key)}
+                    onChange={(e)=>handleChange(e,"email",key)} /> </td>           
+            <td> <input type="text" name={item.id} value={item.mobilePhone} onClick={(e) => handleClick(e,"mobilePhone",key)}
+                    onChange={(e)=>handleChange(e,"mobilePhone",key)} /> </td>
+           
+            {selected.index === key ? (<td><input id="selected" type="text" size="7" name="selected" autoFocus value={selected.value} onChange={(e) =>handleChange(e, "selected", key)}/></td>) : ""}
+        </tr>
+                )
+            })}
+            {
+            selected.index != null ? (<tr><td></td><td></td><td></td><td></td><td></td><td><input type="submit" value="Submit" /></td></tr>)
+                 :
+                    (<tr><td></td></tr>)}
+    </table>
+   </form>   
+          <canvas
+           ref={canvasRef}
+           width={600}
+           height={600}
+           />
+       </div>
+}
+
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<MyApp />);
+</script>
+</body>
+</html>

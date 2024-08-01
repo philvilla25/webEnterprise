@@ -150,7 +150,7 @@ public class Slider implements Serializable {
      */
     public void timeStep() {
         // Increment the current travel distance by the movement direction
-        currentTravel += movementDirection;
+        currentTravel += movementDirection + TRAVEL_SPEED;
 
         // Check if the current travel distance has reached or exceeded the maximum travel distance in either direction
         if (currentTravel >= maxTravel || currentTravel <= -maxTravel) {
