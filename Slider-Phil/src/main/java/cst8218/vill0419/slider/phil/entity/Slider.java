@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /*
@@ -32,27 +33,22 @@ public class Slider implements Serializable {
     private static final int CHANGE_RATE = 1;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    
+    @NotNull
     private Integer x;
+    
+    @NotNull
     private Integer y;
-    private Integer sliderSize;
-    private Integer maxTravel = MAX_TRAVEL_LIMIT;
-    private Integer currentTravel;
-    private Integer movementDirection;
+    
+    private Integer sliderSize = INITIAL_SIZE;
+    private Integer maxTravel = 10;
+    private Integer currentTravel = INITIAL_SIZE;
+    private Integer movementDirection = 2;
     private Integer dirChangeCount = 1;
 
-//    public Slider(){}
-//    
-//    public Slider(int x, int y) {
-//        this.sliderSize = INITIAL_SIZE;
-//        this.x = x;
-//        this.y = y;
-//        this.currentTravel = INITIAL_SIZE;
-//        this.maxTravel = INITIAL_SIZE;
-//        this.movementDirection = TRAVEL_SPEED;
-//        this.dirChangeCount = 0;
-//    }
+
     @Id
     public Long getId() {
         return id;
@@ -99,6 +95,7 @@ public class Slider implements Serializable {
     /**
      * @param x the x to set
      */
+    
     public void setX(Integer x) {
         this.x = x;
     }
@@ -142,7 +139,7 @@ public class Slider implements Serializable {
      * @param maxTravel the maxTravel to set
      */
     public void setMaxTravel(Integer maxTravel) {
-        this.maxTravel = MAX_TRAVEL_LIMIT;
+        this.maxTravel = maxTravel;
     }
 
     /**
@@ -150,7 +147,11 @@ public class Slider implements Serializable {
      */
     public void timeStep() {
         // Increment the current travel distance by the movement direction
+<<<<<<< HEAD
         currentTravel += movementDirection + TRAVEL_SPEED;
+=======
+        currentTravel += movementDirection * TRAVEL_SPEED;
+>>>>>>> 6cf83c0b80d49e8ffe18a595b3bf8fd829da92b1
 
         // Check if the current travel distance has reached or exceeded the maximum travel distance in either direction
         if (currentTravel >= maxTravel || currentTravel <= -maxTravel) {

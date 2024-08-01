@@ -1,0 +1,13 @@
+cst8218\vill0419\lab2version2\exceptions\NonexistentEntityException.class
+cst8218\vill0419\lab2version2\ContactController$ContactControllerConverter.class
+cst8218\vill0419\lab2version2\ContactController.class
+cst8218\vill0419\lab2version2\JakartaRestConfiguration.class
+cst8218\vill0419\lab2version2\Contact.class
+cst8218\vill0419\lab2version2\exceptions\PreexistingEntityException.class
+cst8218\vill0419\lab2version2\util\PaginationHelper.class
+cst8218\vill0419\lab2version2\resources\JakartaEE10Resource.class
+cst8218\vill0419\lab2version2\exceptions\RollbackFailureException.class
+cst8218\vill0419\lab2version2\exceptions\IllegalOrphanException.class
+cst8218\vill0419\lab2version2\ContactJpaController.class
+cst8218\vill0419\lab2version2\ContactController$1.class
+cst8218\vill0419\lab2version2\util\JsfUtil.class
